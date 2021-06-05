@@ -393,9 +393,12 @@ Given [34, 15, 88, 2] your solution will return 2
 Given [34, -345, -1, 100] your solution will return -345
 You can assume, for the purpose of this kata, that the supplied array will not be empty.*/
 
-findSmallestInt(args){
+function findSmallestIntj (args) {
     return args.sort((i,j) => i-j).shift();
-}//took array , than sorted by sort(sorted sunction)  that deleted first smalest elem from array with shift()
+};
+
+
+//took array , than sorted by sort(sorted sunction)  that deleted first smalest elem from array with shift()
 
 
 /*22. Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
@@ -423,4 +426,200 @@ let summationn = function (num) {
     return sum;
 }
 
-/*23. */
+/*23. Simple, remove the spaces from the string, then return the resultant string.*/
+function noSpace(x){
+  return x.split('').filter((el)=>{ return el !== " " }).join('');
+  // return x.replace(/\s/g,'') // other option shorter
+}
+console.log(noSpace('some string with spaces'));
+
+/*24.We need a function that can transform a number into a string.
+What ways of achieving this do you know?
+Examples:
+123 --> "123"
+999 --> "999" */
+
+
+function numberToString(num) {
+  return `${num}`
+  // return num.numberToString;
+  // return '' + num;
+}
+
+/*25. Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
+The output should be two capital letters with a dot separating them.
+It should look like this:
+Sam Harris => S.H
+Patrick Feeney => P.F*/
+
+function abbrevName(name){
+  let arr = name.split(" ");
+  let firstName = arr[0];
+  let lastName = arr[1];
+  return `${firstName[0].toUpperCase()}.${lastName[0].toUpperCase()}`;
+}
+function abbrevNamee(name){
+  return name.split(' ').map(x => x.substr(0, 1).toUpperCase()).join('.');
+}
+function abbbrevNNamee(name){
+  var nameArray = name.split(" ");
+  return (nameArray[0][0] + "." + nameArray[1][0]).toUpperCase();
+}
+/*26. Convert number to reversed array of digits
+Given a random non-negative number, you have to return the digits of this number within an array in reverse order.
+Example:
+348597 => [7,9,5,8,4,3]*/
+
+function digitize(n) {
+  return ('' + n).split('').reverse().map((item) => +item);
+  // return String(n).split('').map(Number).reverse();
+}
+console.log(digitize(89465));
+
+
+/*27.Your task is to create a function that does four basic mathematical operations.
+The function should take three arguments - operation(string/char), value1(number), value2(number).
+The function should return result of numbers after applying the chosen operation.
+Examples
+basicOp('+', 4, 7)         // Output: 11
+basicOp('-', 15, 18)       // Output: -3
+basicOp('*', 5, 5)         // Output: 25
+basicOp('/', 49, 7)        // Output: 7 */ 
+function basicOp(operation, value1, value2){
+  if( operation === '+'){return value1 + value2}
+  else if( operation === '-'){return value1 - value2}
+  else if( operation === '*'){return value1 * value2} 
+  else if( operation === '/'){return value1 / value2}; 
+}
+function basiccOp(operation, value1, value2)
+{
+  switch(operation){
+    case '+': return value1 + value2;
+    case '*': return value1 * value2;
+    case '-': return value1 - value2;
+    case '/': return value1 / value2;
+  }
+}
+console.log(basicOp( '+' , 4, 5))
+
+/*28.Create a function that checks if a number n is divisible by two numbers x AND y. All inputs are positive, non-zero digits.
+
+Examples:
+1) n =   3, x = 1, y = 3 =>  true because   3 is divisible by 1 and 3
+2) n =  12, x = 2, y = 6 =>  true because  12 is divisible by 2 and 6
+3) n = 100, x = 5, y = 3 => false because 100 is not divisible by 3
+4) n =  12, x = 7, y = 5 => false because  12 is neither divisible by 7 nor 5 */
+function isDivisible(n, x, y) {
+  return (n % x == 0  && n % y == 0) ? true : false;
+}
+
+/*29. Introduction
+The first century spans from the year 1 up to and including the year 100, The second - from the year 101 up to and including the year 200, etc.
+Task :
+Given a year, return the century it is in.
+Input , Output Examples :
+1705 --> 18
+1900 --> 19
+1601 --> 17
+2000 --> 20
+Hope you enjoy it .. Awaiting for Best Practice Codes
+*/ 
+function century(year) {
+  return Math.ceil(year/100);
+}
+
+/*30. Complete the square sum function so that it squares each number passed into it and then sums the results together.
+For example, for [1, 2, 2] it should return 9 because 1^2 + 2^2 + 2^2 = 9.*/
+function squareSum(numbers){
+  return numbers.map((el) => Math.pow(el,2)).reduce((sum,el) => (sum += el), 0)
+}
+
+
+/*31 Consider an array/list of sheep where some sheep may be missing from their place. We need a function that counts the number of sheep present in the array (true means present).
+
+For example,
+
+[true,  true,  true,  false,
+  true,  true,  true,  true ,
+  true,  false, true,  false,
+  true,  false, false, true ,
+  true,  true,  true,  true ,
+  false, false, true,  true]
+The correct answer would be 17.
+
+Hint: Don't forget to check for bad values like null/undefined*/ 
+function countSheeps(arrayOfSheep) {
+  let count = 0;
+  arrayOfSheep.forEach((el) => el ? count++ : count ); 
+  return count;
+
+  // return arr.filter(Boolean).length;
+}
+
+/*32 Clock shows h hours, m minutes and s seconds after midnight.
+Your task is to write a function which returns the time since midnight in milliseconds.
+Example:
+h = 0
+m = 1
+s = 1
+result = 61000
+Input constraints:
+0 <= h <= 23
+0 <= m <= 59
+0 <= s <= 59*/ 
+
+
+/*33 Can you find the needle in the haystack?
+Write a function findNeedle() that takes an array full of junk but containing one "needle"
+After your function finds the needle it should return a message (as a string) that says:
+"found the needle at position " plus the index it found the needle, so:
+findNeedle(['hay', 'junk', 'hay', 'hay', 'moreJunk', 'needle', 'randomJunk'])
+should return "found the needle at position 5"*/ 
+function findNeedle(haystack) {
+  let index = haystack.indexOf('needle',0);
+  if (index != -1) {return `found the needle at position ${index}`};
+}
+
+
+/*34 Given an array of integers, return a new array with each value doubled.
+For example:
+[1, 2, 3] --> [2, 4, 6]
+For the beginner, try to use the map method - it comes in very handy quite a lot so is a good one to know.*/ 
+function maps(x){
+  return x.map((el) => el * 2)
+}
+
+/*35 Given a set of numbers, return the additive inverse of each. Each positive becomes negatives, and the negatives become positives.
+invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+invert([]) == []
+You can assume that all values are integers. Do not mutate the input array/list.*/ 
+
+function invert(array) {
+  return array.map(el => -1 * el);
+}
+/*36 Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.*/ 
+function fakeBin(x){
+  return x.split('').map((el) => el < 5 ? 0 : 1).join('');
+}
+/*37 Given an array of integers.
+Return an array, where the first element is the count of positives numbers and the second element is sum of negative numbers.
+If the input array is empty or null, return an empty array.
+Example
+For input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15], you should return [10, -65].*/ 
+
+function countPositivesSumNegativess(input) {
+    return [input.filter((el) => el > 0).length ?? 0 , input.reduce(((sum , elem) => (elem < 0) ? (sum += elem) : sum), 0) ?? 0 ];
+  }
+
+function countPositivesSumNegatives(input){
+    let ress = [];
+    let sumOfNeg = input.filter((el) => el < 0 ).reduce((sum , el) => sum += el, 0);
+    let countOfPos = input.filter((el) => el > 0).length;
+    return [countOfPos  ,sumOfNeg ] 
+  }
+console.log(countPositivesSumNegatives([]))
+
+
+/*38*/ 
+
